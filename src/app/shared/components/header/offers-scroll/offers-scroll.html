@@ -1,0 +1,19 @@
+<article
+  class="flex items-center space-x-24 overflow-hidden sticky top-0 bg-white border-b"
+>
+  <ul
+    class="flex items-center whitespace-nowrap space-x-24 animate-infinite-scroll"
+  >
+    @for (item of offers; track $index) {
+    <li class="text-xs font-semibold">- {{ item }} -</li>
+    }
+  </ul>
+  <ul
+    class="flex items-center whitespace-nowrap space-x-24 animate-infinite-scroll"
+    aria-hidden="true"
+  >
+    @for (item of offers; track $index) {
+    <li class="text-xs font-semibold">- {{ item }} -</li>
+    }
+  </ul>
+</article>
