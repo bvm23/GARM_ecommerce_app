@@ -1,0 +1,41 @@
+<nav
+  class="flex justify-between items-center px-4 gap-6 border-b font-medium sticky top-0 bg-white lg:text-lg"
+>
+  <button
+    [ngClass]="{
+      'uppercase py-2.5 w-1/3 text-left lg:hidden': true,
+      'border-r': isNavOpen()
+    }"
+    (click)="openNav()"
+  >
+    menu
+  </button>
+  <ul
+    class="flex items-center justify-end w-full py-3 transition-all lg:justify-between"
+  >
+    <div
+      [ngClass]="{
+        'flex gap-12 items-center lg:flex': true,
+        'hidden': !isNavOpen(),
+      }"
+    >
+      <li>shop</li>
+      <li>collections</li>
+      <li>more</li>
+    </div>
+
+    <div
+      [ngClass]="{
+        hidden: isNavOpen(),
+        'flex items-center gap-8': true
+      }"
+    >
+      <li>search</li>
+      <li class="relative">
+        cart<span class="absolute -top-2 text-sm text-orange-500 underline"
+          >0</span
+        >
+      </li>
+    </div>
+  </ul>
+</nav>

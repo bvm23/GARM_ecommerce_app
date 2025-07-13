@@ -20,4 +20,5 @@ body {
   text-transform: uppercase;
   scrollbar-width: thin;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }

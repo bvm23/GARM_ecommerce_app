@@ -1,13 +1,14 @@
+import { environment } from './../../../environments/environment';
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { OffersScroll } from './offers-scroll/offers-scroll';
 import { catchError, interval, map, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { type LocationResponse } from '../../models/api.model';
-import { environment } from '../../../../environments/environment';
+import { type LocationResponse } from '../../shared/models/api.model';
+import { Nav } from '../nav/nav';
 
 @Component({
   selector: 'e-header',
-  imports: [OffersScroll],
+  imports: [OffersScroll, Nav],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
