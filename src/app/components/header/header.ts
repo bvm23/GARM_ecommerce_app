@@ -16,11 +16,11 @@ export class Header implements OnInit {
   private destroyRef = inject(DestroyRef);
   private http = inject(HttpClient);
 
-  private timer$ = interval(1000);
-  protected time = signal<string | undefined>(this.getTime());
-  protected location = signal<string | undefined>('loading..');
+  timer$ = interval(1000);
+  time = signal<string | undefined>(this.getTime());
+  location = signal<string | undefined>('loading..');
 
-  private getTime() {
+  getTime() {
     return new Date()
       .toLocaleTimeString()
       .replace(/am/gi, '')

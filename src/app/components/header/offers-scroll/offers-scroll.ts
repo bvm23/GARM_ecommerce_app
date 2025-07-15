@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './offers-scroll.css',
 })
 export class OffersScroll {
-  protected offers: string[] = [
+  offers: string[] = [
     'save 10% with code save10',
     'free shipping on orders over $150',
     'save 10% with code save10',

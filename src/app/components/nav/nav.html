@@ -6,7 +6,7 @@
       'uppercase py-2.5 w-1/3 text-left lg:hidden': true,
       'border-r': isNavOpen()
     }"
-    (click)="toggleNav()"
+    (click)="[toggleNav(), selectedMenu.set(undefined)]"
   >
     menu
   </button>
@@ -17,9 +17,9 @@
         'hidden': !isNavOpen(),
       }"
     >
-      <li>shop</li>
-      <li>collections</li>
-      <li>more</li>
+      @for (item of ['shop','collections','more']; track $index) {
+      <li (click)="selectedMenu.set(item)">{{ item }}</li>
+      }
     </div>
 
     <div
@@ -38,7 +38,18 @@
   </ul>
 </nav>
 
-@if (isSearchStart()) {
+@if (selectedMenu()) {
+<menu>
+  <div>
+    @for (menu of submenu() ; track $index) {
+    <li>{{ menu.name }}</li>
+    @for (option of menu.options; track $index) {
+    <li>{{ option }}</li>
+    } }
+  </div>
+  <button (click)="selectedMenu.set(undefined)">close</button>
+</menu>
+} @if (isSearchStart()) {
 <article class="inset-0 absolute">
   <div
     class="bg-[rgba(0,0,0,0.8)] inset-0 fixed"

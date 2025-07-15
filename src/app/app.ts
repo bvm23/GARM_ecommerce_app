@@ -9,5 +9,5 @@ import { Header } from './components/header/header';
   styleUrl: './app.css',
 })
 export class App {
-  protected title = 'ecommerce_app';
+  title = 'ecommerce_app';
 }
