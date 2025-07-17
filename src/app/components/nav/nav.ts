@@ -32,12 +32,12 @@ export class Nav implements OnInit {
   isSearchStart = signal<boolean>(false);
   selectedMenu = signal<string | undefined>('');
 
-  submenu = computed(() => {
-    if (!this.isNavOpen()) return undefined;
-    return Object.entries(MENUDATA).find(
-      (menu) => menu[0] === this.selectedMenu()
-    )?.[1];
-  });
+  submenu = computed(
+    () =>
+      Object.entries(MENUDATA).find(
+        (menu) => menu[0] === this.selectedMenu()
+      )?.[1]
+  );
 
   toggleNav() {
     this.isNavOpen.update((current) => !current);
@@ -46,6 +46,7 @@ export class Nav implements OnInit {
   toggleSearch() {
     this.isSearchStart.update((current) => !current);
   }
+
   ngOnInit() {
     const textInputSubscription = this.searchInput$.valueChanges
       .pipe(debounceTime(500))

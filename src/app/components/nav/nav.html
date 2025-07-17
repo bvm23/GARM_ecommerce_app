@@ -10,22 +10,27 @@
   >
     menu
   </button>
-  <ul class="flex items-center justify-end w-full py-3 lg:justify-between">
+  <ul class="flex items-center justify-end w-full lg:justify-between">
     <div
       [ngClass]="{
-        'flex gap-12 items-center lg:flex': true,
+        'flex gap-12 cursor-pointer lg:flex': true,
         'hidden': !isNavOpen(),
       }"
     >
       @for (item of ['shop','collections','more']; track $index) {
-      <li (click)="selectedMenu.set(item)">{{ item }}</li>
+      <li
+        class="h-12 flex items-center justify-center hover:scale-90 hover:transition-all"
+        (mouseover)="selectedMenu.set(item)"
+      >
+        {{ item }}
+      </li>
       }
     </div>
 
     <div
       [ngClass]="{
         hidden: isNavOpen(),
-        'flex items-center gap-8': true
+        'flex items-center gap-8 [&_li]:cursor-pointer [&_li]:hover:scale-90 [&_li]:hover:transition-all': true
       }"
     >
       <li (click)="toggleSearch()">search</li>
@@ -39,15 +44,25 @@
 </nav>
 
 @if (selectedMenu()) {
-<menu>
-  <div>
-    @for (menu of submenu() ; track $index) {
-    <li>{{ menu.name }}</li>
-    @for (option of menu.options; track $index) {
-    <li>{{ option }}</li>
-    } }
-  </div>
-  <button (click)="selectedMenu.set(undefined)">close</button>
+<menu
+  class="p-4 overflow-hidden flex flex-col border-b"
+  (mouseleave)="selectedMenu.set(undefined)"
+>
+  <article
+    class="flex flex-col h-[300px] overflow-auto flex-wrap gap-y-6 lg:mb-8 lg:h-fit lg:flex-row lg:gap-x-12"
+  >
+    @for (menu of submenu(); track $index) {
+    <div class="flex flex-col items-center gap-2">
+      <li class="font-bold">{{ menu.name }}</li>
+      @for (option of menu.options; track $index) {
+      <li>{{ option }}</li>
+      }
+    </div>
+    }
+  </article>
+  <button class="mx-auto lg:hidden" (click)="selectedMenu.set(undefined)">
+    <e-icon [img]="clearIcon" class="text-red-600" />
+  </button>
 </menu>
 } @if (isSearchStart()) {
 <article class="inset-0 absolute">
