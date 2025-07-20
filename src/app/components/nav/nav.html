@@ -1,5 +1,5 @@
 <nav
-  class="flex justify-between items-center px-4 gap-6 border-b font-medium sticky top-0 z-20 bg-white lg:text-xl lg:px-6"
+  class="flex justify-between items-center px-4 gap-6 border-b font-medium sticky top-0 z-10 bg-white lg:text-xl lg:px-6"
 >
   <button
     [ngClass]="{
@@ -67,17 +67,17 @@
 } @if (isSearchStart()) {
 <article class="inset-0 absolute">
   <div
-    class="bg-[rgba(0,0,0,0.8)] inset-0 fixed"
+    class="bg-[rgba(0,0,0,0.8)] inset-0 z-10 fixed"
     (click)="toggleSearch()"
   ></div>
   <div
-    class="bg-white w-full flex items-center gap-3 fixed top-0 px-4 h-14 md:w-3/5 md:inset-x-1/5 md:inset-y-1/5 md:rounded-xl lg:w-2/4 lg:rounded-xl lg:inset-x-1/4 lg:inset-y-1/5 xl:w-2/6 xl:inset-x-2/6 2xl:w-1/5 2xl:inset-x-5/12"
+    class="bg-white w-full flex items-center gap-3 fixed top-0 px-4 z-20 h-14 md:w-3/5 md:inset-x-1/5 md:inset-y-1/5 md:rounded-xl lg:w-2/4 lg:rounded-xl lg:inset-x-1/4 lg:inset-y-1/5 xl:w-2/6 xl:inset-x-2/6 2xl:w-1/5 2xl:inset-x-5/12"
   >
     <e-icon [img]="searchIcon" [size]="18" />
     <input
       type="text"
       name="search"
-      class="w-full text-left font-medium outline-0"
+      class="w-full text-left font-medium outline-0 z-40"
       placeholder="SEARCH..."
       [formControl]="searchInput$"
     />
