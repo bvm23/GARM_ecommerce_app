@@ -1,0 +1,35 @@
+<section class="absolute bg-white inset-0 z-50 h-dvh flex flex-col">
+  <header class="p-4 flex items-center justify-between border-b">
+    <p class="text-left">
+      your cart<span
+        class="ml-4 border px-1 font-black text-orange-500 border-black rounded-sm"
+        >0</span
+      >
+    </p>
+    <e-icon
+      [img]="closeIcon"
+      class="text-orange-500 p-1"
+      [size]="18"
+      (click)="closeCart()"
+    />
+  </header>
+  <body class="flex grow p-4 gap-y-8 flex-col">
+    <!-- <e-cart-item /> -->
+    <div class="m-auto">
+      <p class="text-xl text-center font-bold mb-2">your cart is empty</p>
+      <p class="text-base text-center">add some items to the cart.</p>
+    </div>
+  </body>
+  <footer class="p-4 border-t">
+    <p class="flex items-center justify-between font-black text-lg">
+      <span>subtotal</span><span>$0</span>
+    </p>
+    <button
+      disabled
+      class="w-full bg-orange-500 text-white py-3 mt-3 rounded-lg text-xl uppercase text-center disabled:bg-gray-300 disabled:text-white disabled:opacity-75"
+      #checkoutBtn
+    >
+      {{ checkoutBtn.disabled ? "disabled" : "checkout" }}
+    </button>
+  </footer>
+</section>

@@ -4,15 +4,18 @@ import {
   Component,
   computed,
   DestroyRef,
+  ElementRef,
   inject,
   OnInit,
   signal,
+  viewChild,
 } from '@angular/core';
 import { Icon } from '../../shared/components/icon/icon';
 import { Search, XCircle } from 'lucide-angular';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 import { type IMenuData } from '../../shared/models/constants.model';
+import { Cart as CartService } from '../../services/cart';
 
 @Component({
   selector: 'e-nav',
@@ -22,6 +25,7 @@ import { type IMenuData } from '../../shared/models/constants.model';
 })
 export class Nav implements OnInit {
   private destroyRef = inject(DestroyRef);
+  private cartService = inject(CartService);
 
   readonly searchIcon = Search;
   readonly clearIcon = XCircle;
@@ -39,6 +43,14 @@ export class Nav implements OnInit {
       )?.[1]
   );
 
+  ngOnInit() {
+    const textInputSubscription = this.searchInput$.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe({ next: (input) => console.log(input) });
+
+    this.destroyRef.onDestroy(() => textInputSubscription.unsubscribe());
+  }
+
   toggleNav() {
     this.isNavOpen.update((current) => !current);
   }
@@ -47,11 +59,7 @@ export class Nav implements OnInit {
     this.isSearchStart.update((current) => !current);
   }
 
-  ngOnInit() {
-    const textInputSubscription = this.searchInput$.valueChanges
-      .pipe(debounceTime(500))
-      .subscribe({ next: (input) => console.log(input) });
-
-    this.destroyRef.onDestroy(() => textInputSubscription.unsubscribe());
+  toggleCart() {
+    this.cartService.toggleCartView();
   }
 }
