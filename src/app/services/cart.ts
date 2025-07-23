@@ -4,7 +4,7 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class Cart {
-  private cartEmpty = signal<boolean>(true);
+  private cartEmpty = signal<boolean>(false);
 
   isCartEmpty = this.cartEmpty.asReadonly();
 

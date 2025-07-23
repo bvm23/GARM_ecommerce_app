@@ -18,3 +18,17 @@ export const MENUDATA: IMenuData = {
     { name: 'legal', options: ['privacy policy', 'terms'] },
   ],
 };
+
+export const PRODUCTS: { name: string; img: string }[] = [
+  { name: 'sport crossbody', img: 'img2.avif' },
+  { name: 'sport crossbody', img: 'img3.avif' },
+  { name: 'sport crossbody', img: 'img4.avif' },
+  { name: 'sport crossbody', img: 'img5.avif' },
+  { name: 'sport crossbody', img: 'img6.avif' },
+  { name: 'sport crossbody', img: 'img7.avif' },
+  { name: 'sport crossbody', img: 'img8.avif' },
+  { name: 'sport crossbody', img: 'img9.avif' },
+  { name: 'sport crossbody', img: 'img10.avif' },
+  { name: 'sport crossbody', img: 'img11.avif' },
+  { name: 'sport crossbody', img: 'img12.avif' },
+];

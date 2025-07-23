@@ -6,7 +6,7 @@ import { Cart as CartService } from '../../services/cart';
 
 @Component({
   selector: 'e-cart',
-  imports: [Icon, CartItem],
+  imports: [Icon],
   templateUrl: './cart.html',
   styleUrl: './cart.css',
 })
