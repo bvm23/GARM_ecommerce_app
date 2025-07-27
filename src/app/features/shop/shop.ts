@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { PRODUCTS } from '../../shared/utils/constants';
+import { Shop as ShopService } from '../../services/shop';
 import { Img } from '../../shared/components/img/img';
 import { RouterLink } from '@angular/router';
 
@@ -10,5 +11,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './shop.css',
 })
 export class Shop {
-  readonly PRODUCTS = PRODUCTS;
+  private shopService = inject(ShopService);
+
+  products = this.shopService.products;
 }

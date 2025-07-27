@@ -5,10 +5,11 @@ import { catchError, interval, map, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { type LocationResponse } from '../../shared/models/api.model';
 import { Nav } from '../nav/nav';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'e-header',
-  imports: [OffersScroll, Nav],
+  imports: [OffersScroll, Nav, RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })

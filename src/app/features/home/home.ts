@@ -1,3 +1,4 @@
+import { RouterLink } from '@angular/router';
 import { Component } from '@angular/core';
 import { Icon } from '../../shared/components/icon/icon';
 import { CornerRightUp } from 'lucide-angular';
@@ -5,7 +6,7 @@ import { Img } from '../../shared/components/img/img';
 
 @Component({
   selector: 'e-home',
-  imports: [Icon, Img],
+  imports: [Icon, Img, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

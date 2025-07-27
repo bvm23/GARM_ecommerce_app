@@ -52,7 +52,12 @@
     >
       @for (menu of submenu(); track $index) {
       <div class="flex flex-col items-center gap-2">
-        <li class="font-bold">{{ menu.name }}</li>
+        <a
+          [routerLink]="menu.href"
+          (click)="[isNavOpen.set(false), selectedMenu.set(undefined)]"
+        >
+          <li class="font-bold">{{ menu.name }}</li>
+        </a>
         @for (option of menu.options; track $index) {
         <li>{{ option }}</li>
         }

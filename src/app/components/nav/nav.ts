@@ -16,10 +16,11 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 import { type IMenuData } from '../../shared/models/constants.model';
 import { Cart as CartService } from '../../services/cart';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'e-nav',
-  imports: [NgClass, Icon, ReactiveFormsModule],
+  imports: [NgClass, Icon, ReactiveFormsModule, RouterLink],
   templateUrl: './nav.html',
   styleUrl: './nav.css',
 })
