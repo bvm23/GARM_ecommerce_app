@@ -1,1 +1,91 @@
-<p>{{ item().name }}</p>
+<section>
+  <div class="relative aspect-square">
+    <e-img [imgPath]="item().img" />
+  </div>
+  <article class="flex flex-row gap-1 my-1 overflow-auto mx-1">
+    <div class="relative h-36 w-36 shrink-0 scale-x-[-1]">
+      <e-img [imgPath]="item().img" />
+    </div>
+    <div class="relative h-36 w-36 shrink-0">
+      <e-img [imgPath]="item().img" />
+    </div>
+    <div class="relative h-36 w-36 shrink-0 scale-x-[-1]">
+      <e-img [imgPath]="item().img" />
+    </div>
+    <div class="relative h-36 w-36 shrink-0">
+      <e-img [imgPath]="item().img" />
+    </div>
+  </article>
+</section>
+
+<section class="p-4 mt-10">
+  <a routerLink="/shop/all" class="flex mb-4"
+    ><span>
+      <e-icon [img]="leftArrowIcon" />
+    </span>
+    back</a
+  >
+
+  <article>
+    <p class="font-semibold">{{ item().name }}</p>
+    <p>
+      {{ item().price }} usd
+      <span class="line-through ml-4 font-medium"
+        >{{ (item().price + 20).toFixed(2) }} usd</span
+      >
+    </p>
+  </article>
+
+  <article class="my-4">
+    <p class="text-sm mb-1">size</p>
+    <ul class="grid grid-cols-5 gap-1 items-center w-full">
+      @for (size of [28,30,32,34,36]; track $index) {
+      <li
+        [ngClass]="{
+          'text-center w-full border p-1 rounded-sm': true,
+          'bg-orange-500 text-white border-0': size === selectedSize()
+        }"
+        (click)="selectedSize.set(size)"
+      >
+        {{ size }}
+      </li>
+      }
+    </ul>
+  </article>
+
+  <button
+    class="bg-orange-500 text-white w-full text-center my-2 py-2 text-xl uppercase rounded-md font-medium"
+    (click)="onAddToCart()"
+  >
+    add to cart
+  </button>
+
+  <article class="my-8 flex flex-col gap-8">
+    <details #desc>
+      <summary class="flex justify-between">
+        <p class="text-lg font-semibold">product description</p>
+        <e-icon
+          [img]="desc.open ? minusIcon : plusIcon"
+          class="text-orange-500"
+        />
+      </summary>
+      <p class="border-t pt-3">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique,
+        laborum! Reprehenderit dolor vel, aut nulla quaerat aspernatur iste.
+      </p>
+    </details>
+    <details #guide>
+      <summary class="flex justify-between">
+        <p class="text-lg font-semibold">sizing guide</p>
+        <e-icon
+          [img]="guide.open ? minusIcon : plusIcon"
+          class="text-orange-500"
+        />
+      </summary>
+      <p class="border-t pt-3">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique,
+        laborum! Reprehenderit dolor vel, aut nulla quaerat aspernatur iste.
+      </p>
+    </details>
+  </article>
+</section>
