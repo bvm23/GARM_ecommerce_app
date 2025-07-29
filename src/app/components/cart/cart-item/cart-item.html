@@ -1,25 +1,37 @@
 <article class="flex gap-4">
   <div class="relative w-48 h-32 border">
-    <e-img imgPath="img5.avif" />
+    <e-img [imgPath]="item().item.img" />
   </div>
   <div class="flex justify-between w-full">
     <div class="flex flex-col justify-between">
       <div>
-        <p>formal pants</p>
-        <p class="text-gray-600">28</p>
+        <p>{{ item().item.name }}</p>
+        <p class="text-gray-600">{{ item().size }}</p>
       </div>
       <div class="flex items-center gap-4">
-        <e-icon [img]="minusIcon" class="text-orange-600" />
-        <p class="font-bold">4</p>
-        <e-icon [img]="plusIcon" class="text-orange-600" />
+        <e-icon
+          [img]="minusIcon"
+          class="text-orange-600"
+          (click)="onMinusButtonClick()"
+        />
+        <p class="font-bold">{{ item().count }}</p>
+        <e-icon
+          [img]="plusIcon"
+          class="text-orange-600"
+          (click)="onPlusButtonClick()"
+        />
       </div>
     </div>
     <div class="flex flex-col justify-between items-end">
       <div class="text-right">
-        <p class="text-lg">$400</p>
+        <p class="text-lg">${{ item().count * item().item.price }}</p>
         <p class="text-gray-600 line-through">$400</p>
       </div>
-      <e-icon [img]="closeIcon" class="p-1 text-orange-600" />
+      <e-icon
+        [img]="removeIcon"
+        class="p-1 text-orange-600"
+        (click)="onRemoveButtonClick()"
+      />
     </div>
   </div>
 </article>

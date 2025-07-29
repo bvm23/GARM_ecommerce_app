@@ -14,3 +14,9 @@ export interface IProduct {
   img: string;
   price: number;
 }
+
+export interface ICartItem {
+  item: IProduct;
+  count: number;
+  size: number;
+}

@@ -1,6 +1,9 @@
 @if (isCartEmpty()) {
 <e-cart />
 }
-<e-header />
-<router-outlet></router-outlet>
-<e-footer />
+
+<section [ngClass]="{ hidden: isCartEmpty() }">
+  <e-header />
+  <router-outlet></router-outlet>
+  <e-footer />
+</section>

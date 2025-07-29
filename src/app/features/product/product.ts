@@ -33,7 +33,12 @@ export class Product {
   selectedSize = signal<number>(28);
 
   onAddToCart() {
+    this.cartService.addItem(this.item().id, this.selectedSize());
     this.cartService.toggleCartView();
+  }
+
+  changeSize(size: number) {
+    this.selectedSize.set(size);
   }
 }
 

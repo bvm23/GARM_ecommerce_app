@@ -3,7 +3,7 @@
     <p class="text-left">
       your cart<span
         class="ml-4 border px-1 font-black text-orange-500 border-black rounded-sm"
-        >0</span
+        >{{ totalCartItemsCount() }}</span
       >
     </p>
     <e-icon
@@ -14,8 +14,10 @@
     />
   </header>
   <body class="flex grow p-4 gap-y-8 flex-col">
-    <!-- <e-cart-item /> -->
-    <div class="m-auto">
+    @for (cartItem of cartItems(); track $index) {
+    <e-cart-item [item]="cartItem" />
+    }
+    <div [ngClass]="{ 'm-auto': true, hidden: cartItems().length > 0 }">
       <p class="text-xl text-center font-bold mb-2">your cart is empty</p>
       <p class="text-base text-center">add some items to the cart.</p>
     </div>
