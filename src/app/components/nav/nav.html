@@ -35,9 +35,9 @@
     >
       <li (click)="toggleSearch()">search</li>
       <li class="relative" (click)="toggleCart()">
-        cart<span class="absolute -top-2 text-sm text-orange-500 underline"
-          >0</span
-        >
+        cart<span class="absolute -top-2 text-sm text-orange-500 underline">{{
+          cartItemsCount()
+        }}</span>
       </li>
     </div>
   </ul>

@@ -16,13 +16,7 @@ export class Cart {
 
   readonly closeIcon = X;
   readonly cartItems = this.cartService.cartItems;
-
-  totalCartItemsCount = computed(() =>
-    this.cartItems().reduce(
-      (totalCount, cartItem) => (totalCount += cartItem.count),
-      0
-    )
-  );
+  readonly cartItemsCount = this.cartService.cartItemsCount;
 
   closeCart() {
     this.cartService.toggleCartView();

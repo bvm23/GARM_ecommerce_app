@@ -17,40 +17,71 @@ export class Cart {
   isCartEmpty = this.cartEmpty.asReadonly();
   cartItems = this.cart.asReadonly();
 
+  cartItemsCount = computed(() =>
+    this.cart().reduce(
+      (totalCount, cartItem) => (totalCount += cartItem.count),
+      0
+    )
+  );
+
   toggleCartView() {
     this.cartEmpty.update((current) => !current);
   }
 
-  addItem(itemId: number, size: number) {
-    //increase count
-    const existing = this.cart().find(
+  addItem(itemId: number, size: number): void {
+    const pickedItem = this.items().find((it) => it.id === itemId);
+
+    if (!pickedItem) {
+      console.warn(`product with id: ${itemId} not found`);
+      return;
+    }
+
+    this.cart.update((current) => {
+      const existingIndex = current.findIndex(
+        (it) => it.item.id === itemId && it.size === size
+      );
+
+      //increase count
+      if (existingIndex !== -1) {
+        return current.map((it, idx) =>
+          idx === existingIndex ? { ...it, count: it.count + 1 } : it
+        );
+      } else {
+        //add new item
+        const newCartItem: ICartItem = {
+          size,
+          item: pickedItem,
+          count: 1,
+        };
+        return [...current, newCartItem];
+      }
+    });
+  }
+
+  removeItem(
+    itemId: number,
+    size: number,
+    type: 'complete' | 'partial' = 'partial'
+  ): void {
+    const existingIndex = this.cart().findIndex(
       (it) => it.item.id === itemId && it.size === size
     );
 
-    if (existing) {
-      existing.count++;
+    if (existingIndex === -1) {
+      console.warn(
+        `product with id: ${itemId} and size: ${size} not exist in cart`
+      );
       return;
     }
 
-    //add new item
-    const pickedItem = this.items().find((it) => it.id === itemId);
-    if (!pickedItem) return;
-    const newCartItem: ICartItem = { size: size, item: pickedItem, count: 1 };
-    this.cart.update((current) => [...current, newCartItem]);
-  }
-
-  removeItem(itemId: number, size?: number) {
-    const existing = this.cart().find((it) => it.item.id === itemId);
-    if (!existing) return;
-
-    //remove item
-    if (existing?.count === 1 || !size) {
-      const updatedCart = this.cart().filter((it) => it.item.id !== itemId);
-      this.cart.set(updatedCart);
-      return;
-    }
-
-    //decrease count
-    existing.count--;
+    this.cart.update((current) => {
+      const item = current[existingIndex];
+      return item?.count <= 1 || type === 'complete'
+        ? current.filter((it, idx) => idx !== existingIndex) // remove
+        : current.map(
+            (it, idx) =>
+              idx === existingIndex ? { ...it, count: it.count - 1 } : it // decrement count
+          );
+    });
   }
 }

@@ -28,6 +28,10 @@ export class CartItem {
   }
 
   onRemoveButtonClick() {
-    this.cartService.removeItem(this.item().item.id);
+    this.cartService.removeItem(
+      this.item().item.id,
+      this.item().size,
+      'complete'
+    );
   }
 }

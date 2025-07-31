@@ -31,6 +31,7 @@ export class Nav implements OnInit {
   readonly searchIcon = Search;
   readonly clearIcon = XCircle;
   readonly MENUDATA: IMenuData = MENUDATA;
+  readonly cartItemsCount = this.cartService.cartItemsCount;
 
   searchInput$ = new FormControl<string>('');
   isNavOpen = signal<boolean>(false);
