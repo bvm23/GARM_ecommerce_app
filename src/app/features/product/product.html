@@ -19,12 +19,12 @@
 </section>
 
 <section class="p-4 mt-10">
-  <a routerLink="/shop/all" class="flex mb-4"
-    ><span>
+  <button class="flex mb-4 uppercase" (click)="goBack()">
+    <span>
       <e-icon [img]="leftArrowIcon" />
     </span>
-    back</a
-  >
+    back
+  </button>
 
   <article>
     <p class="font-semibold">{{ item().name }}</p>

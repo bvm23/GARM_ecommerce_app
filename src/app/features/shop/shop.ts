@@ -1,8 +1,8 @@
-import { Component, inject, input, OnInit } from '@angular/core';
-import { PRODUCTS } from '../../shared/utils/constants';
+import { Component, computed, inject, input } from '@angular/core';
 import { Shop as ShopService } from '../../services/shop';
 import { Img } from '../../shared/components/img/img';
 import { RouterLink } from '@angular/router';
+import { type IProduct } from '../../shared/models/constants.model';
 
 @Component({
   selector: 'e-shop',
@@ -13,5 +13,15 @@ import { RouterLink } from '@angular/router';
 export class Shop {
   private shopService = inject(ShopService);
 
-  products = this.shopService.products;
+  type = input<string>();
+
+  itemsOfSelectedType = computed(() =>
+    this.type()
+      ? (item: IProduct) => item.type === this.type()
+      : (item: IProduct) => item
+  );
+
+  products = computed(() =>
+    this.shopService.products().filter(this.itemsOfSelectedType())
+  );
 }

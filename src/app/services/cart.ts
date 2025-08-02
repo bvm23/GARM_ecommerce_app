@@ -24,6 +24,13 @@ export class Cart {
     )
   );
 
+  cartTotalAmount = computed(() =>
+    this.cart().reduce(
+      (total, cartItem) => (total += cartItem.count * cartItem.item.price),
+      0
+    )
+  );
+
   toggleCartView() {
     this.cartEmpty.update((current) => !current);
   }

@@ -13,7 +13,7 @@
 </article>
 <div>
   <a
-    [routerLink]="['shop', 'all']"
+    [routerLink]="['shop']"
     class="flex justify-between items-center px-4 py-2 font-medium border-b text-sm"
   >
     <p>winter collection</p>
@@ -29,6 +29,8 @@
 <div class="grid grid-rows-2 [&_a]:border-b">
   <a
     class="relative w-full aspect-square object-cover overflow-hidden contrast-125"
+    [routerLink]="['shop']"
+    [queryParams]="{ type: 'men' }"
   >
     <e-img imgPath="img5.avif" />
     <p
@@ -40,6 +42,8 @@
 
   <a
     class="relative w-full aspect-square object-cover overflow-hidden contrast-125"
+    [routerLink]="['shop']"
+    [queryParams]="{ type: 'women' }"
   >
     <e-img imgPath="img6.avif" />
     <p
