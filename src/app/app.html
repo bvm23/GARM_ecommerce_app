@@ -2,8 +2,21 @@
 <e-cart />
 }
 
-<section [ngClass]="{ hidden: isCartEmpty() }">
+<section
+  [ngClass]="{
+    hidden: isCartEmpty(),
+    'blur-2xl h-screen overflow-hidden pointer-events-none': isLoginOpen()
+  }"
+>
   <e-header />
   <router-outlet></router-outlet>
   <e-footer />
 </section>
+
+<dialog class="absolute inset-0 mx-auto my-auto bg-transparent" open>
+  <router-outlet
+    name="auth"
+    (activate)="isLoginOpen.set(true)"
+    (deactivate)="isLoginOpen.set(false)"
+  ></router-outlet>
+</dialog>

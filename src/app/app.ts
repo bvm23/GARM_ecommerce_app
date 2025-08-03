@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
@@ -16,4 +16,6 @@ export class App {
   private cartService = inject(CartService);
 
   isCartEmpty = this.cartService.isCartEmpty;
+
+  isLoginOpen = signal<boolean>(false);
 }
